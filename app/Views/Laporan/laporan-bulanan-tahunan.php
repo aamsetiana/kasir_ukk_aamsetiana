@@ -7,17 +7,12 @@
         <div class="row">
             <div class="col-sm-6">
                 <h1 class="card-title" style="font-size: 27px;">Laporan Penjualan</h1>
+                <p class="font-weight-bold">Jenis Laporan : <span class="font-weight-normal"><?= $jenis_laporan == 'bulanan' ? 'Bulanan' : 'Tahunan' ?></span></p>
+                <p class="font-weight-bold">Bulan : <span class="font-weight-normal"><?= ($bulan == '' ? '' : $bulan); ?></span></p>
+                <p class="font-weight-bold">Tahun: <span class="font-weight-normal"><?= $tahun ?></span></p>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-</div>
-
-<div class="row p-3">
-    <div class="col-lg-12">
-        <p class="font-weight-bold">Jenis Laporan : <span class="font-weight-normal"><?= $jenis_laporan == 'bulanan' ? 'Bulanan' : 'Tahunan' ?></span></p>
-        <p class="font-weight-bold">Bulan : <span class="font-weight-normal"><?= ($bulan == '' ? '' : $bulan); ?></span></p>
-        <p class="font-weight-bold">Tahun: <span class="font-weight-normal"><?= $tahun ?></span></p>
-    </div>
 </div>
 
 <div class="card">
@@ -30,12 +25,12 @@
             <table id="myTable" class="table table-sm ">
                 <thead>
                     <tr>
-                    <th>No</th>
-                            <th>Nama Produk</th>
-                            <th>Jumlah</th>
-                            <th>Harga Jual</th>
-                            <th>Harga Beli</th>
-                            <th>Total Harga</th>
+                        <th>No</th>
+                        <th>Nama Produk</th>
+                        <th>Jumlah</th>
+                        <th>Harga Jual</th>
+                        <th>Harga Beli</th>
+                        <th>Total Harga</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,18 +52,18 @@
                         <?php
                     endforeach;
                         ?>
-                        <tfoot>
-                        <tr>
-                            <td colspan="5">Total Penjualan:</td>
-                            <td><?= $total_penjualan ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="5">Total Keuntungan:</td>
-                            <td><?= $total_keuntungan ?></td>
-                        </tr>
-                    </tfoot>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Total Penjualan:</td>
+                        <td><?= $total_penjualan ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">Total Keuntungan:</td>
+                        <td><?= $total_keuntungan ?></td>
+                    </tr>
+                </tfoot>
 
-                        </tr>
+                </tr>
                 </tbody>
             </table>
         </div>
