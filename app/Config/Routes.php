@@ -52,8 +52,12 @@ $routes->get('/transaksi-jual', 'TransaksiPenjualan::transaksi', ['filter' => 'o
 $routes->post('/simpan-transaksi', 'TransaksiPenjualan::transaksiSimpan');
 $routes->get('/pembayaran', 'TransaksiPenjualan::simpanPembayaran');
 
-//laporan
+//laporan stij
 $routes->get('/laporan-stok', 'Stok::laporanStok');
+
+//laporan penjualan
+$routes->get('/laporan-penjualan', 'LaporanPenjualan::index');
+$routes->post('/laporan-penjualan', 'LaporanPenjualan::generate_laporan_penjualan');
 
 //cetak
 $routes->get('/cetak-laporan-stok', 'CetakStok::generate');

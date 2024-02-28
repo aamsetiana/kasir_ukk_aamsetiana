@@ -189,16 +189,19 @@
           <i class="bi bi-clipboard-data"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
-            </a>
-          </li>
+          <?php if ($akses == 'Admin') : ?>
+            <li>
+              <a href="<?= site_url('laporan-penjualan'); ?>">
+                <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
+              </a>
+            </li>
+          <?php endif; ?>
           <li>
             <a href="<?= site_url('laporan-stok'); ?>">
               <i class="bi bi-circle"></i><span>Laporan Stok</span>
             </a>
           </li>
+
         </ul>
       </li><!-- End Tables Nav -->
 

@@ -3,8 +3,8 @@
 
 
 <div class="pagetitle">
-    <h1>Laporan Stok</h1>
-    <p>Berikut adalah data laporan stok</p>
+    <h1>Laporan Stok Produk</h1>
+    <p>Berikut adalah data laporan stok produk</p>
 </div>
 <p><a href="<?= site_url('cetak-laporan-stok'); ?>" class="btn btn-primary btn-sm">
         <i class="bi bi-printer"></i> Cetak</a></p>

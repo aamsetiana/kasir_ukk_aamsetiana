@@ -91,4 +91,23 @@ class Mdetail extends Model
             'monthlyIncome' => array_values($monthlyIncome) // Mengambil nilai dari array untuk memastikan urutan yang benar
         ];
     }
+
+    public function pendapatanBulanan()
+    {
+        $db = \Config\Database::connect(); // Mengambil instance koneksi database
+
+        $builder = $db->table('tbl_detail_penjualan');
+        $builder->select('SUM((tbl_produk.harga_jual - tbl_produk.harga_beli) * tbl_detail_penjualan.qty) AS total_pendapatan_bulanan');
+        $builder->join('tbl_penjualan', 'tbl_penjualan.id_penjualan = tbl_detail_penjualan.id_penjualan');
+        $builder->join('tbl_produk', 'tbl_produk.id_produk = tbl_detail_penjualan.id_produk');
+        // Filter data berdasarkan bulan dan tahun
+        $builder->where('YEAR(tbl_penjualan.tgl_penjualan)', date('Y')); // Filter tahun ini
+        $builder->where('MONTH(tbl_penjualan.tgl_penjualan)', date('m')); // Filter bulan ini
+
+        $query = $builder->get();
+        $result = $query->getRowArray(); // Mengambil hasil query sebagai array
+
+        return $result['total_pendapatan_bulanan'];
+    }
+    
 }
