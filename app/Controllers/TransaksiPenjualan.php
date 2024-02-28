@@ -20,6 +20,7 @@ class TransaksiPenjualan extends BaseController
     public function transaksi()
     {
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
             'no_faktur' => $this->penjualan->buatFaktur(),
             'produkList' => $this->produk->getProdukStokKosong(),
@@ -34,7 +35,7 @@ class TransaksiPenjualan extends BaseController
 
     public function transaksiSimpan()
     {
-        
+
         // ambil detail barang yang dijual
         $where = ['id_produk' => $this->request->getPost('id_produk')];
 

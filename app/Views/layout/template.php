@@ -378,51 +378,51 @@
     });
   </script>
 
-<script>
-          // Ambil data dari controller
-          var chartData = <?= json_encode($chartData) ?>;
+  <script>
+    // Ambil data dari controller
+    var chartData = <?= json_encode($chartData) ?>;
 
-          // Daftar bulan untuk label chart
-          var months = chartData.months;
+    // Daftar bulan untuk label chart
+    var months = chartData.months;
 
-          // Data pendapatan bulanan
-          var incomeData = chartData.monthlyIncome;
+    // Data pendapatan bulanan
+    var incomeData = chartData.monthlyIncome;
 
-          // Buat grafik menggunakan Chart.js
-          var ctx = document.getElementById('myChart').getContext('2d');
-          var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: months,
-              datasets: [{
-                label: 'Chart Example',
-                data: incomeData,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)'
-                ],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-        </script>
+    // Buat grafik menggunakan Chart.js
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [{
+          label: 'Chart Example',
+          data: incomeData,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
 
 </body>
 

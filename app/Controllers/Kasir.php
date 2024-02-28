@@ -12,7 +12,8 @@ class Kasir extends BaseController
         $data  = [
             'akses' => session()->get('level'),
             'total_stok' => $this->produk->getJumlahStok(),
-            'jumlah_stok_kosong' => $this->produk->getJumlahStokKosong()
+            'jumlah_stok_kosong' => $this->produk->getJumlahStokKosong(),
+            'chartData' => $this->detail->getMonthlyIncome(),
         ];
         return view('Kasir/dashboard-kasir', $data);
     }

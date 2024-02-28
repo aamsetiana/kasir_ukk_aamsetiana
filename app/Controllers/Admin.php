@@ -9,13 +9,17 @@ class Admin extends BaseController
 {
     public function halamanAdmin()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
 
         $data  = [
             'akses' => session()->get('level'),
             'total_stok' => $this->produk->getJumlahStok(),
             'jumlah_stok_kosong' => $this->produk->getJumlahStokKosong(),
             'pendapatan_harian' => $this->penjualan->getPendapatanHarian(),
-            'chartData' => $this->detail->getMonthlyIncome()
+            'chartData' => $this->detail->getMonthlyIncome(),
             // 'dataPendapatan' => $this->penjualan->getPendapatanBulanan(),
             // $dataPendapatan = $pendapatanModel->getPendapatanBulanan($tahun);
         ];

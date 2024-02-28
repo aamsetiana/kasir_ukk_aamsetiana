@@ -11,6 +11,7 @@ class Stok extends BaseController
     public function laporanStok()
     {
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
             'listProduk' => $this->produk->getAllProduk(),
             'listProduk' => $this->produk->getProdukOrderByStokAscInStock(),

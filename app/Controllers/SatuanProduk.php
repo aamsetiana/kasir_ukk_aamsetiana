@@ -11,6 +11,7 @@ class SatuanProduk extends BaseController
     public function satuan()
     {
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
             'listSatuan' => $this->satuan_produk->findAll()
         ];
@@ -20,6 +21,7 @@ class SatuanProduk extends BaseController
     public function tambahSatuan()
     {
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level')
         ];
         return view('Satuan/tambah-satuan', $data);
@@ -69,6 +71,7 @@ class SatuanProduk extends BaseController
             'id_satuan' => $idSatuan
         ];
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
             'detailSatuan' => $this->satuan_produk->where($syarat)->findAll()
         ];

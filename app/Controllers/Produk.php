@@ -10,6 +10,7 @@ class Produk extends BaseController
     public function produk()
     {
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
             'listProduk' => $this->produk->getAllProduk(),
             // 'listProduk' => $this->produk->getProdukOrderByStokAscInStock(),
@@ -20,6 +21,7 @@ class Produk extends BaseController
     public function tambahProduk()
     {
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
             'listSatuan' => $this->satuan_produk->findAll(),
             'listKategori' => $this->kategori_produk->findAll()
@@ -95,6 +97,7 @@ class Produk extends BaseController
         ];
 
         $data = [
+            'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
             'listKategori' => $this->kategori_produk->findAll(),
             'listSatuan' => $this->satuan_produk->findAll(),
