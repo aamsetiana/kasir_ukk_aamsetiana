@@ -71,23 +71,23 @@ class Mpenjualan extends Model
         return $this->where('DATE(tgl_penjualan)', $today)->select('SUM(total) AS pendapatan_harian')->get()->getRow()->pendapatan_harian;
     }
 
-    public function getPenjualanBulanan()
-    {
-        $builder = $this->db->table('tbl_penjualan');
-        $builder->select('MONTH(tgl_penjualan) AS bulan, SUM(total) AS total_penjualan');
-        $builder->groupBy('MONTH(tgl_penjualan)');
-        $builder->orderBy('bulan', 'asc');
-        return $builder->get()->getResultArray();
-    }
+    // public function getPenjualanBulanan()
+    // {
+    //     $builder = $this->db->table('tbl_penjualan');
+    //     $builder->select('MONTH(tgl_penjualan) AS bulan, SUM(total) AS total_penjualan');
+    //     $builder->groupBy('MONTH(tgl_penjualan)');
+    //     $builder->orderBy('bulan', 'asc');
+    //     return $builder->get()->getResultArray();
+    // }
 
-    public function getPenjualanTahunan()
-    {
-        $builder = $this->db->table('tbl_penjualan');
-        $builder->select('YEAR(tgl_penjualan) AS tahun, SUM(total) AS total_penjualan');
-        $builder->groupBy('YEAR(tgl_penjualan)');
-        $builder->orderBy('tahun', 'asc');
-        return $builder->get()->getResultArray();
-    }
+    // public function getPenjualanTahunan()
+    // {
+    //     $builder = $this->db->table('tbl_penjualan');
+    //     $builder->select('YEAR(tgl_penjualan) AS tahun, SUM(total) AS total_penjualan');
+    //     $builder->groupBy('YEAR(tgl_penjualan)');
+    //     $builder->orderBy('tahun', 'asc');
+    //     return $builder->get()->getResultArray();
+    // }
 
     
 
