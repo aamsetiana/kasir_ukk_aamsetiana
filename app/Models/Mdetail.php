@@ -52,4 +52,43 @@ class Mdetail extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getMonthlyIncome()
+    {
+        $db = db_connect();
+
+        $builder = $db->table($this->table);
+        $builder->select('YEAR(tbl_penjualan.tgl_penjualan) AS tahun, MONTH(tbl_penjualan.tgl_penjualan) AS bulan, SUM((tbl_produk.harga_jual - tbl_produk.harga_beli) * tbl_detail_penjualan.qty) AS total_pendapatan_bulanan');
+        $builder->join('tbl_penjualan', 'tbl_penjualan.id_penjualan = tbl_detail_penjualan.id_penjualan');
+        $builder->join('tbl_produk', 'tbl_produk.id_produk = tbl_detail_penjualan.id_produk');
+        $builder->groupBy('tahun, bulan'); // Mengelompokkan berdasarkan tahun dan bulan
+
+        $query = $builder->get();
+        $results = $query->getResultArray();
+
+        // Inisialisasi array untuk menyimpan total pendapatan bulanan untuk setiap bulan
+        $monthlyIncome = [];
+
+        // Inisialisasi array untuk menyimpan label bulan
+        $months = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
+
+        // Mengisi array total pendapatan bulanan dengan nol untuk setiap bulan
+        foreach ($months as $index => $month) {
+            $monthlyIncome[$index + 1] = 0; // Bulan dimulai dari 1, bukan dari 0
+        }
+
+        // Mengisi array total pendapatan bulanan dengan nilai yang diperoleh dari hasil query
+        foreach ($results as $row) {
+            $monthlyIncome[$row['bulan']] = $row['total_pendapatan_bulanan'];
+        }
+
+        // Mengembalikan data total pendapatan bulanan untuk digunakan oleh chart
+        return [
+            'months' => $months,
+            'monthlyIncome' => array_values($monthlyIncome) // Mengambil nilai dari array untuk memastikan urutan yang benar
+        ];
+    }
 }

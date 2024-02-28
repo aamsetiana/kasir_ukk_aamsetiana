@@ -87,104 +87,36 @@
           </div>
         </div><!-- End Sales Card -->
 
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  Grafik Penjualan Bulanan (<?= date('Y') ?>)
+        <!-- grafik -->
+        <div class="row p-4">
+          <!-- /.col (LEFT) -->
+          <div class="col-md-12">
+            <!-- LINE CHART -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Grafik Pendapatan Perbulan</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <div class="chartjs-size-monitor">
+                    <div class="chartjs-size-monitor-expand">
+                      <div class=""></div>
+                    </div>
+                    <div class="chartjs-size-monitor-shrink">
+                      <div class=""></div>
+                    </div>
+                  </div>
+                  <canvas id="myChart" width="600" height="150"></canvas>
                 </div>
-                <div class="card-body">
-                  <canvas id="chartPenjualanBulanan"></canvas>
-                </div>
+                <!-- /.card-body -->
               </div>
             </div>
+            <!-- /.card -->
           </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  Grafik Penjualan Tahunan
-                </div>
-                <div class="card-body">
-                  <canvas id="chartPenjualanTahunan"></canvas>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- /.col (RIGHT) -->
         </div>
+        <!-- /.row -->
 
-        <script src="<?= base_url() ?>/NiceAdmin/assets/js/chart.js"></script>
+        
 
-        <script>
-          $(document).ready(function() {
-            // Grafik Penjualan Bulanan
-            var ctx = document.getElementById('chartPenjualanBulanan').getContext('2d');
-            var chartPenjualanBulanan = new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
-                datasets: [{
-                  label: 'Penjualan',
-                  data: [
-                    <?php foreach ($penjualanBulanan as $data) : ?>
-                      <?= $data['total_penjualan'] ?>,
-                    <?php endforeach; ?>
-                  ],
-                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                  borderColor: 'rgba(255, 99, 132, 1)',
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      beginAtZero: true
-                    }
-                  }]
-                }
-              }
-            });
-
-            // Grafik Penjualan Tahunan
-            var ctx = document.getElementById('chartPenjualanTahunan').getContext('2d');
-            var chartPenjualanTahunan = new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: [
-                  <?php foreach ($penjualanTahunan as $data) : ?>
-                    <?= $data['tahun'] ?>,
-                  <?php endforeach; ?>
-                ],
-                datasets: [{
-                  label: 'Penjualan',
-                  data: [
-                    <?php foreach ($penjualanTahunan as $data) : ?>
-                      <?= $data['total_penjualan'] ?>,
-                    <?php endforeach; ?>
-                  ],
-                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                  borderColor: 'rgba(54, 162, 235, 1)',
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                scales: {
-                  yAxes: [{
-                    ticks: {
-                      beginAtZero: true
-                    }
-                  }]
-                }
-              }
-            });
-          });
-        </script>
-
-      </div>
-</section>
-
-
-<?= $this->endSection(); ?>
+        <?= $this->endSection(); ?>

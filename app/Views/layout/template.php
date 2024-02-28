@@ -54,6 +54,8 @@
   <link href="<?= base_url('/NiceAdmin/assets/vendor/simple-datatables/style.css'); ?>" rel="stylesheet">
   <link href="<?= base_url('/NiceAdmin/assets/vendor/DataTables/datatables.min.css'); ?>" rel="stylesheet">
 
+  <link rel="stylesheet" href="<?= base_url('NiceAdmin/assets/js/charts.js/Chart.min.js'); ?>">
+
   <link href="<?= base_url('/NiceAdmin/assets/vendor/Select2/select2.min.css'); ?>" rel="stylesheet">
 
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
@@ -132,7 +134,7 @@
 
       <?php if ($akses == 'Admin') : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="<?=site_url('halaman-admin');?>">
+          <a class="nav-link collapsed" href="<?= site_url('halaman-admin'); ?>">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -141,7 +143,7 @@
 
       <?php if ($akses == 'Kasir') : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="<?=site_url('halaman-kasir');?>">
+          <a class="nav-link collapsed" href="<?= site_url('halaman-kasir'); ?>">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -248,7 +250,7 @@
   <!-- Template Main JS File -->
   <script src="<?= base_url('/NiceAdmin/assets/js/main.js'); ?>"></script>
 
-
+  <script src="<?= base_url('NiceAdmin/assets/js/charts.js/Chart.min.js'); ?>"></script>
   <script src="<?= base_url('/NiceAdmin/assets/vendor/DataTables/datatables.min.js'); ?>"></script>
   <script src="<?= base_url('/NiceAdmin/assets/vendor/Select2/select2.min.js'); ?>"></script>
   <!-- format uang -->
@@ -375,6 +377,52 @@
       }
     });
   </script>
+
+<script>
+          // Ambil data dari controller
+          var chartData = <?= json_encode($chartData) ?>;
+
+          // Daftar bulan untuk label chart
+          var months = chartData.months;
+
+          // Data pendapatan bulanan
+          var incomeData = chartData.monthlyIncome;
+
+          // Buat grafik menggunakan Chart.js
+          var ctx = document.getElementById('myChart').getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: months,
+              datasets: [{
+                label: 'Chart Example',
+                data: incomeData,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
 
 </body>
 

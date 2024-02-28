@@ -15,9 +15,7 @@ class Admin extends BaseController
             'total_stok' => $this->produk->getJumlahStok(),
             'jumlah_stok_kosong' => $this->produk->getJumlahStokKosong(),
             'pendapatan_harian' => $this->penjualan->getPendapatanHarian(),
-            'penjualanBulanan' => $this->penjualan->getPenjualanBulanan(),
-            'penjualanTahunan' => $this->penjualan->getPenjualanTahunan(),
-
+            'chartData' => $this->detail->getMonthlyIncome()
             // 'dataPendapatan' => $this->penjualan->getPendapatanBulanan(),
             // $dataPendapatan = $pendapatanModel->getPendapatanBulanan($tahun);
         ];
