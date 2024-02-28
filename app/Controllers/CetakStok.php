@@ -34,6 +34,6 @@ class CetakStok extends BaseController
         $dompdf->render();
 
         // Tampilkan PDF dalam browser
-        $dompdf->stream('laporan_stok.pdf', ['Attachment' => 0]);
+        $dompdf->stream('laporan_stok.pdf', ['Attachment' => true]);
     }
 }
