@@ -4,29 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Stok</title>
+    <title>Laporan Stok Produk</title>
     <style>
+        /* Base styles for readability and consistency */
+        body {
+            font-family: Arial, sans-serif;
+            /* Modern font family */
+            margin: 2rem;
+            /* Add margin for better spacing */
+        }
+
         table {
             width: 100%;
+            /* Ensure full width on all screens */
             border-collapse: collapse;
+            /* Combine cell borders */
+            border: 1px solid #ddd;
+            /* Light border for contrast */
+            font-size: 16px;
+            /* Adjust default font size */
         }
 
         th,
         td {
-            border: 1px solid black;
-            padding: 8px;
+            padding: 1rem;
+            /* Increase padding for better readability */
             text-align: left;
         }
-    </style>
-    <!-- <style>
-        .page-break {
-            page-break-after: always;
+
+        th {
+            background-color: #f2f2f2;
+            /* Light background for headers */
         }
-    </style> -->
+
+        /* Optional styling for visual appeal */
+        table {
+            border-radius: 5px;
+            /* Add subtle border radius for smoothness */
+        }
+
+        th,
+        td {
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+        }
+
+        /* Optional media query for responsiveness (adjust as needed) */
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+                /* Adjust font size for smaller screens */
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1 style="text-align: center;">Laporan Stok Produk</h1>
+    <h1 style="text-align: center; font-weight: bold; margin-bottom: 1.5rem;">LAPORAN STOK PRODUK</h1>
     <table>
         <thead>
             <tr>
@@ -42,7 +76,6 @@
                     <td><?= $no++; ?></td>
                     <td><?= $baris['nama_produk']; ?></td>
                     <td><?= $baris['stok']; ?></td>
-                    <!-- <div class="page-break"></div> -->
                 </tr>
             <?php endforeach; ?>
         </tbody>
