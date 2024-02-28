@@ -66,6 +66,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama Produk</th>
+                <th>Harga Jual</th>
                 <th>Stok</th>
             </tr>
         </thead>
@@ -75,6 +76,7 @@
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $baris['nama_produk']; ?></td>
+                    <td><?= $baris['harga_jual']; ?></td>
                     <td><?= $baris['stok']; ?></td>
                 </tr>
             <?php endforeach; ?>

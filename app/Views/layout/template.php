@@ -380,6 +380,7 @@
 
   <script>
     // Ambil data dari controller
+    // Ambil data dari controller
     var chartData = <?= json_encode($chartData) ?>;
 
     // Daftar bulan untuk label chart
@@ -395,21 +396,21 @@
       data: {
         labels: months,
         datasets: [{
-          label: 'Chart Example',
+          label: 'Pendapatan',
           data: incomeData,
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)'
+            'rgba(54, 162, 235, 0.2)', // Light blue
+            'rgba(75, 192, 192, 0.2)', // Lighter blue
+            'rgba(102, 227, 236, 0.2)', // Even lighter blue
+            'rgba(129, 252, 255, 0.2)', // Very light blue
+            'rgba(153, 102, 255, 0.2)' // Lighter purple (existing color)
           ],
           borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)'
+            'rgba(54, 162, 235, 1)', // Blue
+            'rgba(75, 192, 192, 1)', // Medium blue
+            'rgba(102, 227, 236, 1)', // Darker blue
+            'rgba(129, 252, 255, 1)', // Lightest blue
+            'rgba(153, 102, 255, 1)' // Purple (existing color)
           ],
           borderWidth: 1
         }]
