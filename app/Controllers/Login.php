@@ -54,7 +54,7 @@ class Login extends BaseController
 
                 $dataSession = [
                     'email' => $pengguna[0]['email'],
-                    // 'username' => $pengguna[0]['username'],
+                    'username' => $pengguna[0]['username'],
                     'nama_user' => $pengguna[0]['nama_user'],
                     'password' => $pengguna[0]['password'],
                     'level'    => $pengguna[0]['level'],
