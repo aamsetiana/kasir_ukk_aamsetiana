@@ -443,17 +443,75 @@
     });
   </script>
 
-<script>
-$(document).ready(function() {
-  $('.dropdown-item[href="<?= site_url('logout'); ?>"]').click(function(e) {
-    e.preventDefault(); // Prevent default action
-    if (confirm("Apakah Anda yakin ingin logout?")) {
-      // User confirmed, proceed with the actual logout link
-      window.location.href = $(this).attr('href');
+  <script>
+    $(document).ready(function() {
+      $('.dropdown-item[href="<?= site_url('logout'); ?>"]').click(function(e) {
+        e.preventDefault(); // Prevent default action
+        if (confirm("Apakah Anda yakin ingin logout?")) {
+          // User confirmed, proceed with the actual logout link
+          window.location.href = $(this).attr('href');
+        }
+      });
+    });
+  </script>
+
+  <!-- <script>
+    function aturStatusPembayaran() {
+      let totalBayar = parseFloat($('#jumlahPembayaran').val());
+      let totalHargaSemuaBarang = parseFloat($('#totalHargaSemuaBarang').text());
+
+      if (totalBayar >= totalHargaSemuaBarang) {
+        $('#btnPembayaran').prop('disabled', false);
+      } else {
+        $('#btnPembayaran').prop('disabled', true);
+      }
     }
-  });
-});
-</script>
+
+    // Ketika nilai pembayaran berubah, hitung jumlah kembali dan perbarui tampilan
+    $('#jumlahPembayaran').on('input', function() {
+      let totalBayar = parseFloat($(this).val());
+      let totalHargaSemuaBarang = parseFloat($('#totalHargaSemuaBarang').text());
+      let kembali = totalBayar - totalHargaSemuaBarang;
+
+      $('#kembali').val(kembali.toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }));
+
+      // Memanggil fungsi untuk mengatur status pembayaran setiap kali nilai berubah
+      aturStatusPembayaran();
+    });
+
+    // Saat formulir pembayaran diserahkan, lakukan pembayaran
+    $('#formPembayaran').submit(function(e) {
+      e.preventDefault();
+
+      let totalBayar = parseFloat($('#jumlahPembayaran').val());
+      let totalHargaSemuaBarang = parseFloat($('#totalHargaSemuaBarang').text());
+
+      if (totalBayar >= totalHargaSemuaBarang) {
+        let kembali = totalBayar - totalHargaSemuaBarang;
+        alert('Pembayaran berhasil! Kembali: ' + kembali.toLocaleString('id-ID', {
+          style: 'currency',
+          currency: 'IDR'
+        }));
+
+        $.ajax({
+          type: "POST",
+          url: "<?= site_url('pembayaran'); ?>",
+          data: $('#formPembayaran').serialize(),
+          success: function(response) {
+            console.log(response)
+          }
+        });
+
+        location.reload();
+      } else {
+        alert('Pembayaran kurang! Jumlah yang dibayarkan harus lebih besar atau sama dengan total harga semua barang.');
+      }
+    });
+  </script> -->
+
 
   <!-- <script>
     function perbaruiTotalHarga() {
