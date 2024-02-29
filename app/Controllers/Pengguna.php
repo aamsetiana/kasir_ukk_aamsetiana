@@ -32,12 +32,17 @@ class Pengguna extends BaseController
         $validation = \Config\Services::validation();
 
         $rules = [
+            'email' => 'required|is_unique[tbl_user.email]',
             'username' => 'required|is_unique[tbl_user.username]',
             'nama_user' => 'required',
             'password' => 'required',
         ];
 
         $messages = [
+            'email' => [
+                'required' => 'Tidak boleh kosong!',
+                'is_unique' => 'Email sudah ada, silahkan gunakan yang lain',
+            ],
             'username' => [
                 'required' => 'Tidak boleh kosong!',
                 'is_unique' => 'Username sudah ada, silahkan gunakan yang lain',

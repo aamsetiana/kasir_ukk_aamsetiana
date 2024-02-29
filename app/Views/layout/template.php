@@ -108,11 +108,31 @@
               <hr class="dropdown-divider">
             </li>
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="<?= site_url('logout'); ?>">
+              <a class="dropdown-item d-flex align-items-center" href="<?= site_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
             </li>
+
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Konfirmasi Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Apakah Anda yakin ingin logout?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a href="<?= site_url('logout'); ?>" class="btn btn-primary">Logout</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </ul><!-- End Profile Dropdown Items -->
         </li><!-- End Profile Nav -->
@@ -422,6 +442,18 @@
       }
     });
   </script>
+
+<script>
+$(document).ready(function() {
+  $('.dropdown-item[href="<?= site_url('logout'); ?>"]').click(function(e) {
+    e.preventDefault(); // Prevent default action
+    if (confirm("Apakah Anda yakin ingin logout?")) {
+      // User confirmed, proceed with the actual logout link
+      window.location.href = $(this).attr('href');
+    }
+  });
+});
+</script>
 
   <!-- <script>
     function perbaruiTotalHarga() {

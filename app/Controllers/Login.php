@@ -14,6 +14,30 @@ class Login extends BaseController
 
     public function prosesLogin()
     {
+        $validation = \Config\Services::validation();
+
+        $rules = [
+            'email' => 'required',
+            'password' => 'required',
+        ];
+
+        $messages = [
+            'email' => [
+                'required' => 'Masukan email anda!',
+            ],
+            'password' => [
+                'required' => 'Masukan password anda!',
+            ],
+        ];
+
+        // set validasi
+        $validation->setRules($rules, $messages);
+
+        // cek validasi gagal
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
         $validasiForm = [
             'email' => 'required',
             'password' => 'required'

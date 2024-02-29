@@ -69,15 +69,27 @@
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        <input type="email" class="form-control" id="inputUser" name="email" required placeholder="Masukan email anda" autocomplete="off">
-                        <div class="invalid-feedback">Silahkan masukkan email anda!</div>
+                        <input type="email" class="form-control <?= session()->has('errors') && array_key_exists('email', session('errors')) ? 'is-invalid' : null ?>" id="inputUser" name="email" required placeholder="Masukan email anda" autocomplete="off">
+                        <?php if (session()->has('errors') && array_key_exists('email', session('errors'))) : ?>
+                          <div class="invalid-feedback">
+                            <p>
+                              <?= session('errors')['email']; ?>
+                            </p>
+                          </div>
+                        <?php endif; ?>
                       </div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="inputUser" name="password" placeholder="Masukan password" autocomplete="off">
-                      <div class="invalid-feedback">Silahkan masukan password anda!</div>
+                      <input type="password" class="form-control <?= session()->has('errors') && array_key_exists('password', session('errors')) ? 'is-invalid' : null ?>" id="inputUser" name="password" placeholder="Masukan password" autocomplete="off">
+                      <?php if (session()->has('errors') && array_key_exists('password', session('errors'))) : ?>
+                        <div class="invalid-feedback">
+                          <p>
+                            <?= session('errors')['password']; ?>
+                          </p>
+                        </div>
+                      <?php endif; ?>
                     </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Masuk</button>
