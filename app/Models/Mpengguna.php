@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class Mpengguna extends Model
 {
     protected $table            = 'tbl_user';
-    protected $primaryKey       = 'username';
+    protected $primaryKey       = 'email';
     protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['username','nama_user','password','level'];
+    protected $allowedFields    = ['email','username','nama_user','password','level'];
 
     // Dates
     protected $useTimestamps = false;
@@ -42,12 +42,11 @@ class Mpengguna extends Model
     {
 
         $where=[
-            'username'=>$pengguna,
+            'email'=>$pengguna,
             'password'=>md5($pass)
         ];
         $pengguna = new Mpengguna;
-        $pengguna->select("tbl_user.username, tbl_user.nama_user, tbl_user.password, tbl_user.level");
-        // $pengguna->join("tbl_pegawai" , "tbl_user.nip = tbl_pegawai.nip");
+        $pengguna->select("tbl_user.email, tbl_user.username, tbl_user.nama_user, tbl_user.password, tbl_user.level");
         $pengguna->where($where);
         return $pengguna->findAll();  
     }

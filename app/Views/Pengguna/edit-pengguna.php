@@ -13,7 +13,18 @@
             <h5 class="card-title">Form Edit Pengguna</h5>
 
             <!-- Vertical Form -->
-            <form class="row g-3" action="<?= site_url('perbarui-pengguna/') . $detailUser[0]['username']; ?>" method="POST">
+            <form class="row g-3" action="<?= site_url('perbarui-pengguna/') . $detailUser[0]['email']; ?>" method="POST">
+                <div class="col-12">
+                    <label for="inputNanme4" class="form-label">Email</label>
+                    <input type="email" class="form-control <?= session()->has('errors') ? 'is-invalid' : null; ?>" id="inputUsn" name="email" value="<?= $detailUser[0]['email']; ?>">
+                    <?php if (session()->has('errors') && session('errors.email')) : ?>
+                        <div class="invalid-feedback">
+                            <p>
+                                <?= esc(session('errors.email')); ?>
+                            </p>
+                        </div>
+                    <?php endif; ?>
+                </div>
                 <div class="col-12">
                     <label for="inputNanme4" class="form-label">Username</label>
                     <input type="text" class="form-control <?= session()->has('errors') ? 'is-invalid' : null; ?>" id="inputUsn" name="username" value="<?= $detailUser[0]['username']; ?>">

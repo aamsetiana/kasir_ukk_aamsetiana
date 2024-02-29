@@ -15,21 +15,22 @@ class Login extends BaseController
     public function prosesLogin()
     {
         $validasiForm = [
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ];
 
         if ($this->validate($validasiForm)) {
 
             $pengguna = $this->pengguna->getPengguna(
-                $this->request->getPost('username'),
+                $this->request->getPost('email'),
                 $this->request->getPost('password')
             );
 
             if (count($pengguna) == 1) {
 
                 $dataSession = [
-                    'username' => $pengguna[0]['username'],
+                    'email' => $pengguna[0]['email'],
+                    // 'username' => $pengguna[0]['username'],
                     'nama_user' => $pengguna[0]['nama_user'],
                     'password' => $pengguna[0]['password'],
                     'level'    => $pengguna[0]['level'],

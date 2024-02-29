@@ -25,7 +25,7 @@ class TransaksiPenjualan extends BaseController
             'no_faktur' => $this->penjualan->buatFaktur(),
             'produkList' => $this->produk->getProdukStokKosong(),
             // 'barang'   => $this->detail->findAll(),
-            'produkList' => $this->produk->getAllProduk(),
+            'produkList' => $this->produk->getSemuaProduk(),
             'detailPenjualan' => $this->detail->getDetailPenjualan(session()->get('IdPenjualan')),
             'totalHarga' => $this->penjualan->getTotalHargaById(session()->get('IdPenjualan')),
 
@@ -52,7 +52,7 @@ class TransaksiPenjualan extends BaseController
             $dataPenjualan = [
                 'no_faktur' => $this->request->getPost('no_faktur'),
                 'tgl_penjualan' => $tanggal_sekarang,
-                'username' => session()->get('username'),
+                'email' => session()->get('email'),
                 'total' => 0
                 // 'total' => ($this->request->getPost('qty') * $hargaJual)
             ];

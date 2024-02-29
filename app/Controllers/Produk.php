@@ -115,7 +115,7 @@ class Produk extends BaseController
 
         $rules = [
             'kode_produk' => 'required|is_unique[tbl_produk.kode_produk, id_produk,' . $idproduk . ']',
-            'nama_produk' => 'required',
+            'nama_produk' => 'required|is_unique[tbl_produk.nama_produk, id_produk,' . $idproduk . ']',
             'harga_beli' => 'required',
             'stok' => 'required',
             'harga_jual' => 'required|checkHargaValid[harga_beli]',
@@ -130,7 +130,7 @@ class Produk extends BaseController
             ],
             'nama_produk' => [
                 'required' => 'Tidak boleh kosong!',
-                // 'is_unique' => 'Nama produk sudah ada silahkan gunakan yang lain',
+                'is_unique' => 'Nama produk sudah ada silahkan gunakan yang lain',
             ],
             'harga_beli' => [
                 'required' => 'Tidak boleh kosong!',

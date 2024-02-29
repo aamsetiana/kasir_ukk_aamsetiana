@@ -12,7 +12,7 @@ class Mpenjualan extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_penjualan', 'no_faktur', 'tgl_penjualan', 'username', 'total'];
+    protected $allowedFields    = ['id_penjualan', 'no_faktur', 'tgl_penjualan', 'email', 'total'];
 
     // Dates
     protected $useTimestamps = false;
@@ -89,7 +89,7 @@ class Mpenjualan extends Model
     //     return $builder->get()->getResultArray();
     // }
 
-    
+
 
     // public function autocomplete($keyword)
     // {

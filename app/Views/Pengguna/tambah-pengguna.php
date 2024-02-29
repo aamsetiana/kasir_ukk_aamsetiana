@@ -15,6 +15,17 @@
       <!-- Vertical Form -->
       <form class="row g-3" action="<?= site_url('simpan-pengguna'); ?>" method="POST">
         <div class="col-12">
+          <label for="inputNanme4" class="form-label">Email</label>
+          <input type="email" class="form-control <?= session()->has('errors') ? 'is-invalid' : null; ?>" id="inputUsn" name="email" placeholder="Masukan Username" autofocus autocomplete="off">
+          <?php if (session()->has('errors') && session('errors')['email']) : ?>
+            <div class="invalid-feedback">
+              <p>
+                <?= session('errors')['email']; ?>
+              </p>
+            </div>
+          <?php endif; ?>
+        </div>
+        <div class="col-12">
           <label for="inputNanme4" class="form-label">Username</label>
           <input type="text" class="form-control <?= session()->has('errors') ? 'is-invalid' : null; ?>" id="inputUsn" name="username" placeholder="Masukan Username" autofocus autocomplete="off">
           <?php if (session()->has('errors') && session('errors')['username']) : ?>

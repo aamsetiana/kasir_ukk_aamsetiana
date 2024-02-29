@@ -44,6 +44,7 @@ class Mproduk extends Model
         $produk->select('tbl_produk.id_produk, tbl_produk.kode_produk, tbl_produk.nama_produk, tbl_produk.harga_beli, tbl_produk.harga_jual, tbl_satuan.nama_satuan, tbl_kategori.nama_kategori, tbl_produk.stok');
         $produk->join('tbl_satuan', 'tbl_satuan.id_satuan=tbl_produk.id_satuan');
         $produk->join('tbl_kategori', 'tbl_kategori.id_kategori=tbl_produk.id_kategori');
+        $produk->orderBy('stok', 'asc');
         return $produk->findAll();
     }
 
@@ -53,7 +54,7 @@ class Mproduk extends Model
         $produk->select('tbl_produk.id_produk, tbl_produk.kode_produk, tbl_produk.nama_produk, tbl_produk.harga_beli, tbl_produk.harga_jual, tbl_satuan.nama_satuan, tbl_kategori.nama_kategori, tbl_produk.stok');
         $produk->join('tbl_satuan', 'tbl_satuan.id_satuan=tbl_produk.id_satuan');
         $produk->join('tbl_kategori', 'tbl_kategori.id_kategori=tbl_produk.id_kategori');
-        $produk->WHERE('stok > 0');
+        $produk->where('stok >', 0);
         return $produk->findAll();
     }
     // public function getAllProduk(){

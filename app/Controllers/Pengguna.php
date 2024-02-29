@@ -59,6 +59,7 @@ class Pengguna extends BaseController
         }
 
         $data = [
+            'email' => $this->request->getVar('email'),
             'username' => $this->request->getVar('username'),
             'nama_user' => $this->request->getVar('nama_user'),
             'password' => md5($this->request->getVar('password')),
@@ -72,7 +73,7 @@ class Pengguna extends BaseController
     public function editPengguna($username)
     {
         $syarat = [
-            'username' => $username
+            'email' => $username
         ];
 
         $data = [
@@ -86,19 +87,24 @@ class Pengguna extends BaseController
     public function simpanEditPengguna()
     {
 
-        $username = $this->request->getVar('username');
+        $email = $this->request->getVar('email');
 
         $validation = \Config\Services::validation();
 
         $rules = [
-            'username' => 'required|is_unique[tbl_user.username,' . $username . ']',
-            'nama_user' => 'required',
+            'email' => 'required|is_unique[tbl_user.email,email,' . $email . ']',
+            'username' => 'required|is_unique[tbl_user.username,email,' . $email . ']',
+            'nama_user' => 'required'
         ];
 
         $message = [
+            'email' => [
+                'required' => 'Tidak boleh kosong',
+                'is_unique' => 'email sudah ada, silahkan gunakan yang lain'
+            ],
             'username' => [
                 'required' => 'Tidak boleh kosong',
-                'is_unique' => 'Username sudah ada, silahkan gunakan yang lain'
+                // 'is_unique' => 'username sudah ada, silahkan gunakan yang lain'
             ],
             'nama_user' => [
                 'required' => 'Tidak boleh kosong',
@@ -109,7 +115,8 @@ class Pengguna extends BaseController
 
 
         $datavalid = [
-            'username' => $username,
+            'email' => $email,
+            'username' => $this->request->getPost('username'),
             'nama_user' => $this->request->getPost('nama_user'),
         ];
         if (!$validation->run($datavalid)) {
@@ -117,20 +124,21 @@ class Pengguna extends BaseController
         }
 
         $data = [
+            'email' => $this->request->getVar('email'),
             'username' => $this->request->getVar('username'),
             'nama_user' => $this->request->getVar('nama_user'),
             'level' => $this->request->getVar('level')
         ];
         // var_dump($data);
-        $this->pengguna->update($username, $data);
+        $this->pengguna->update($email, $data);
         session()->setFlashdata('edit', 'Data berhasil diupdate');
         return redirect()->to('/data-pengguna');
     }
 
-    public function hapusPengguna($username)
+    public function hapusPengguna($email)
     {
         $syarat = [
-            'username' => $username
+            'email' => $email
         ];
         $this->pengguna->where($syarat)->delete();
         session()->setFlashdata('hapus', 'Data berhasil dihapus');

@@ -90,11 +90,6 @@
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
 
         <li class="nav-item dropdown pe-3">
@@ -106,8 +101,8 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6><?= session()->get('username'); ?></h6>
-              <span><?= session()->get('level'); ?></span>
+              <h6><?= session()->get('level'); ?></h6>
+              <span><?= session()->get('email'); ?></span>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -427,6 +422,42 @@
       }
     });
   </script>
+
+  <!-- <script>
+    function perbaruiTotalHarga() {
+      var totalHargaSemuaBarang = 0;
+      $('.total-harga').each(function() {
+        totalHargaSemuaBarang += parseFloat($(this).text().replace(',', '.')); // Ambil nilai total harga setiap item dan tambahkan ke total harga semua barang
+      });
+      $('#totalHargaSemuaBarang').text(totalHargaSemuaBarang.toFixed(2).toString().replace('.', ','));
+    }
+
+    function aturStatusPembayaran() {
+      let totalBayar = parseFloat($('#jumlahPembayaran').val());
+      let totalHargaSemuaBarang = parseFloat($('#totalHargaSemuaBarang').text());
+
+      if (totalBayar >= totalHargaSemuaBarang) {
+        $('#btnPembayaran').prop('disabled', false);
+      } else {
+        $('#btnPembayaran').prop('disabled', true);
+      }
+    }
+
+    // Ketika nilai pembayaran berubah, hitung jumlah kembali dan perbarui tampilan
+    $('#jumlahPembayaran').on('input', function() {
+      let totalBayar = parseFloat($(this).val());
+      let totalHargaSemuaBarang = parseFloat($('#totalHargaSemuaBarang').text());
+      let kembali = totalBayar - totalHargaSemuaBarang;
+
+      $('#kembali').val(kembali.toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+      }));
+
+      // Memanggil fungsi untuk mengatur status pembayaran setiap kali nilai berubah
+      aturStatusPembayaran();
+    });
+  </script> -->
 
 </body>
 

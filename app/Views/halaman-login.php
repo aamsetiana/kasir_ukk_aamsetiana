@@ -61,16 +61,16 @@
 
                   <div class="pt-4 pb-2">
                     <h5 class="card-title text-center pb-0 fs-4">Masuk ke Akun Anda</h5>
-                    <p class="text-center small">Masukkan username dan password</p>
+                    <p class="text-center small">Masukkan email dan password</p>
                   </div>
 
                   <form action="<?= site_url('login-pengguna'); ?>" class="row g-3 needs-validation" novalidate method="POST">
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Username</label>
+                      <label for="yourEmail" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        <input type="text" class="form-control" id="inputUser" name="username" required placeholder="Masukan username anda" autocomplete="off">
-                        <div class="invalid-feedback">Silahkan masukkan username anda!</div>
+                        <input type="email" class="form-control" id="inputUser" name="email" required placeholder="Masukan email anda" autocomplete="off">
+                        <div class="invalid-feedback">Silahkan masukkan email anda!</div>
                       </div>
                     </div>
 

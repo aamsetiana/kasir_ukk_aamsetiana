@@ -44,8 +44,10 @@
               <thead>
                 <tr>
                   <th scope="col">No</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Username</th>
                   <th scope="col">Nama Pengguna</th>
+                  <th scope="col">Password</th>
                   <th scope="col">Level</th>
                   <th scope="col">Aksi</th>
                 </tr>
@@ -61,12 +63,14 @@
 
                     <tr>
                       <th scope="row"><?= $no; ?></th>
+                      <td><?= $baris['email']; ?></td>
                       <td><?= $baris['username']; ?></td>
                       <td><?= $baris['nama_user']; ?></td>
+                      <td><?= $baris['password']; ?></td>
                       <td><?= $baris['level']; ?></td>
                       <td>
-                        <a href="<?= site_url('/edit-pengguna/' . $baris['username']); ?>"><i class="btn btn-primary btn-sm bi bi-pencil-square"></i></a>
-                        <a href="<?= site_url('/hapus-pengguna/' . $baris['username']); ?>"><i class="btn btn-danger btn-sm bi bi bi-trash-fill" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')"></i></a>
+                        <a href="<?= site_url('/edit-pengguna/' . $baris['email']); ?>"><i class="btn btn-primary btn-sm bi bi-pencil-square"></i></a>
+                        <a href="<?= site_url('/hapus-pengguna/' . $baris['email']); ?>"><i class="btn btn-danger btn-sm bi bi bi-trash-fill" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')"></i></a>
 
                     <?php
                   }
