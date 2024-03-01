@@ -67,6 +67,10 @@
                 </tbody>
             </table>
         </div>
+        <!-- Tombol Kembali -->
+        <div class="text-center mt-2">
+            <a href="<?= site_url('laporan-penjualan'); ?>" class="btn btn-secondary">Kembali</a>
+        </div>
     </div>
 </div>
 
