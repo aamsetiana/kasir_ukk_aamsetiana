@@ -46,7 +46,8 @@
             <div class="col-md-4">
                 <label class="form-label">Kode Produk</label>
                 <input type="hidden" class="form-control" value="<?= $no_faktur; ?>" name="no_faktur">
-                <select class="js-example-basic-single form-select" name="id_produk">
+                <select class="js-example-basic-single form-select form-control <?= session()->has('errors') ? 'is-invalid' : null ?>" name="id_produk">
+                    <option value="">--Daftar Produk--</option>
                     <?php if (isset($produkList)) :
                         foreach ($produkList as $row) : ?>
                             <option value="<?= $row['id_produk']; ?>"><?= $row['nama_produk']; ?> | <?= $row['stok']; ?> | <?= number_format($row['harga_jual'], 0, ',', '.'); ?></option>
@@ -55,10 +56,24 @@
                         endforeach;
                     endif; ?>
                 </select>
+                <?php if (isset(session('errors')['id_produk'])) : ?>
+                    <div class="mx-1 invalid-feedback">
+                        <p style="font-size: 1rem;">
+                            <?= session('errors')['id_produk']; ?>
+                        </p>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="col-md-3">
                 <label for="inputCity" class="form-label">Jumlah</label>
-                <input type="text" class="form-control barang" id="inputCity" name="qty" autocomplete="off">
+                <input type="text" class="form-control barang <?= session()->has('errors') ? 'is-invalid' : null ?>" id="inputCity" name="qty" autocomplete="off">
+                <?php if (isset(session('errors')['qty'])) : ?>
+                    <div class="mx-1 invalid-feedback">
+                        <p style="font-size: 1rem;">
+                            <?= session('errors')['qty']; ?>
+                        </p>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="col-md-1">
                 <label for="inputZip" class="form-label fw-bold">Aksi</label>
@@ -123,7 +138,6 @@
                                         <h3 class="card-title">TOTAL : RP <?= number_format($totalHarga, 0, ',', '.'); ?></h3>
                                         <a href="<?= site_url('pembayaran') ?>" id="btnPembayaran" class="btn btn-primary btn-lg mt-3">Bayar</a>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">Bayar</label>

@@ -27,7 +27,8 @@ class TransaksiPenjualan extends BaseController
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
-            'no_faktur' => $this->penjualan->buatFaktur(),
+            // 'no_faktur' => $this->penjualan->buatFaktur(),
+            'no_faktur' => $this->penjualan->generateNomerFaktur(),
             'produkList' => $this->produk->getProdukStokKosong(),
             // 'barang'   => $this->detail->findAll(),
             'produkList' => $this->produk->getSemuaProduk(),
@@ -40,6 +41,31 @@ class TransaksiPenjualan extends BaseController
 
     public function transaksiSimpan()
     {
+
+        $validation = \Config\Services::validation();
+
+        $rules = [
+            'qty' => 'required|greater_than[0]',
+            'id_produk' => 'required',
+        ];
+
+        $messages = [
+            'qty' => [
+                'required' => 'Tidak boleh kosong!',
+                'greater_than' => 'Jumlah harus lebih besar dari 0!'
+            ],
+            'id_produk' => [
+                'required' => 'Tidak boleh kosong!',
+            ],
+        ];
+
+        // set validasi
+        $validation->setRules($rules, $messages);
+
+        // cek validasi gagal
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
 
         // ambil detail barang yang dijual
         $where = ['id_produk' => $this->request->getPost('id_produk')];

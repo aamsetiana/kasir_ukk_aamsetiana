@@ -38,19 +38,50 @@ class Mpenjualan extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function buatFaktur()
+    // public function buatFaktur()
+    // {
+    //     $tgl = date('Ymd');
+    //     $query = $this->db->query("SELECT MAX(RIGHT(no_faktur,4)) as noFaktur FROM tbl_penjualan WHERE DATE(tgl_penjualan)='$tgl' ");
+    //     $hasil = $query->getRowArray();
+    //     if ($hasil['noFaktur'] > 0) {
+    //         $tmp = $hasil['noFaktur'] + 1;
+    //         $kd = sprintf("%04s", $tmp);
+    //     } else {
+    //         $kd = "0001";
+    //     }
+    //     $no_faktur = date('Ymd') . $kd;
+    //     return $no_faktur;
+    // }
+
+    public function generateNomerFaktur()
     {
-        $tgl = date('Ymd');
-        $query = $this->db->query("SELECT MAX(RIGHT(no_faktur,4)) as noFaktur FROM tbl_penjualan WHERE DATE(tgl_penjualan)='$tgl' ");
-        $hasil = $query->getRowArray();
-        if ($hasil['noFaktur'] > 0) {
-            $tmp = $hasil['noFaktur'] + 1;
-            $kd = sprintf("%04s", $tmp);
+        // Mendapatkan tanggal saat ini dalam format 'Ymd' (contoh: 20240209 untuk 9 Februari 2024)
+        $tanggal = date('Ymd');
+
+        $lastInvoice = $this->db->table('tbl_penjualan')
+            ->orderBy('id_penjualan', 'DESC')
+            ->limit(1)
+            ->get()
+            ->getRowArray();
+
+        if ($lastInvoice) {
+            $lastInvoiceNumber = $lastInvoice['no_faktur'];
+            // Memeriksa apakah nomor faktur sebelumnya memiliki tanggal yang sama dengan tanggal saat ini
+            if (strpos($lastInvoiceNumber, $tanggal) === 3) {
+                // Jika ya, cukup tambahkan nomor berikutnya
+                $invoiceNumber = filter_var(substr($lastInvoiceNumber, 11), FILTER_SANITIZE_NUMBER_INT);
+                $invoiceNumber++;
+            } else {
+                // Jika tidak, tambahkan tanggal saat ini sebagai bagian dari nomor faktur
+                $invoiceNumber = '1';
+            }
         } else {
-            $kd = "0001";
+            // Jika tidak ada penjualan, mulai dari nomor 1
+            $invoiceNumber = '1';
         }
-        $no_faktur = date('Ymd') . $kd;
-        return $no_faktur;
+
+        // Menggabungkan tanggal dengan nomor faktur
+        return 'FAK' . $tanggal . str_pad($invoiceNumber, 4, '0', STR_PAD_LEFT);
     }
 
     public function getTotalHargaById($idPenjualan)

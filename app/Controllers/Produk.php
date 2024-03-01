@@ -48,7 +48,7 @@ class Produk extends BaseController
             'kode_produk' => 'required|is_unique[tbl_produk.kode_produk]',
             'nama_produk' => 'required|is_unique[tbl_produk.nama_produk]',
             'harga_beli' => 'required',
-            'stok' => 'required',
+            'stok' => 'required|greater_than[0]',
             'harga_jual' => 'required|checkHargaValid[harga_beli]',
             // Menambahkan aturan validasi harga_jual
             // 'nama_produk' => 'required|is_unique[tbl_produk.nama_produk]',
@@ -68,6 +68,7 @@ class Produk extends BaseController
             ],
             'stok' => [
                 'required' => 'Tidak boleh kosong!',
+                'greater_than' => 'Stok harus lebih besar dari 0!'
             ],
             'harga_jual' => [
                 'required' => 'Tidak boleh kosong!',
