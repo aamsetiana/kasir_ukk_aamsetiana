@@ -91,7 +91,7 @@ class Pengguna extends BaseController
             return redirect()->back();
             exit;
         }
-        
+
         $syarat = [
             'email' => $username
         ];
@@ -149,7 +149,6 @@ class Pengguna extends BaseController
             'nama_user' => $this->request->getVar('nama_user'),
             'level' => $this->request->getVar('level')
         ];
-        // var_dump($data);
         $this->pengguna->update($email, $data);
         session()->setFlashdata('edit', 'Data berhasil diupdate');
         return redirect()->to('/data-pengguna');
