@@ -9,6 +9,11 @@ class Kasir extends BaseController
 {
     public function halamanKasir()
     {
+        if (session()->get('level') != 'Kasir') {
+            return redirect()->back();
+            exit;
+        }
+
         $data  = [
             'akses' => session()->get('level'),
             'total_stok' => $this->produk->getJumlahStok(),

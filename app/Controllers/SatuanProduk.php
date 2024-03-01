@@ -10,6 +10,11 @@ class SatuanProduk extends BaseController
 {
     public function satuan()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
@@ -20,6 +25,11 @@ class SatuanProduk extends BaseController
 
     public function tambahSatuan()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level')
@@ -67,6 +77,11 @@ class SatuanProduk extends BaseController
 
     public function editSatuan($idSatuan)
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $syarat = [
             'id_satuan' => $idSatuan
         ];

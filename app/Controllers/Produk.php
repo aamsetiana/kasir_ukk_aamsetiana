@@ -9,6 +9,11 @@ class Produk extends BaseController
 {
     public function produk()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
@@ -20,6 +25,11 @@ class Produk extends BaseController
 
     public function tambahProduk()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
@@ -92,6 +102,11 @@ class Produk extends BaseController
 
     public function editProduk($idProduk)
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $syarat = [
             'id_produk' => $idProduk
         ];

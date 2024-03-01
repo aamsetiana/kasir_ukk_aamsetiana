@@ -9,6 +9,11 @@ class LaporanPenjualan extends BaseController
 {
     public function index()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level')

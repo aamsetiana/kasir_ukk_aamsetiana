@@ -19,6 +19,11 @@ class TransaksiPenjualan extends BaseController
 
     public function transaksi()
     {
+        if (session()->get('level') != 'Kasir') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),

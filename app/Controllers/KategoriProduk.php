@@ -9,6 +9,11 @@ class KategoriProduk extends BaseController
 {
     public function kategori()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level'),
@@ -20,6 +25,11 @@ class KategoriProduk extends BaseController
 
     public function tambahKategori()
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
+
         $data = [
             'chartData' => $this->detail->getMonthlyIncome(),
             'akses' => session()->get('level')
@@ -61,6 +71,10 @@ class KategoriProduk extends BaseController
 
     public function editKategori($idkategori)
     {
+        if (session()->get('level') != 'Admin') {
+            return redirect()->back();
+            exit;
+        }
 
         $syarat = [
             'id_kategori' => $idkategori
