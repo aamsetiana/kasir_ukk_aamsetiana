@@ -68,7 +68,7 @@ class Login extends BaseController
             } else if (session()->get('level') === 'Kasir') {
                 return redirect()->to('/halaman-kasir');
             } else {
-                return redirect()->to('/')->with('pesan', '<div class="text-center mt-3 font-weight-bold`"><p class="text-danger fw-bold">Username atau Password salah harap cek kembali</p></div>');
+                return redirect()->to('/')->with('pesan', '<div class="text-center mt-3 font-weight-bold`"><p class="text-danger fw-bold">Email atau Password salah harap cek kembali</p></div>');
             }
         }
     }
