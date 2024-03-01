@@ -14,7 +14,7 @@ class LaporanPenjualan extends BaseController
             'akses' => session()->get('level')
         ];
 
-        return view('laporan/laporan-penjualan', $data);
+        return view('Laporan/laporan-penjualan', $data);
     }
 
     public function generate_laporan_penjualan()
