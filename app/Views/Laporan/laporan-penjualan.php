@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label for="namaSatuan" class="form-label">Jenis Laporan</label>
-                        <select name="jenis_laporan" id="jenis_laporan" class="form-control">
+                        <select name="jenis_laporan" id="jenis_laporan" class="form-select">
                             <option value="" selected>--pilih jenis--</option>
                             <option value="bulanan">Bulanan</option>
                             <option value="tahunan">Tahunan</option>

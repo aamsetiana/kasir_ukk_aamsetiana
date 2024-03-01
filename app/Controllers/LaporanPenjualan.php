@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Mdetail;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class LaporanPenjualan extends BaseController
@@ -29,45 +30,14 @@ class LaporanPenjualan extends BaseController
         $tahun = $this->request->getPost('tahun');
         $jenis_laporan = $this->request->getPost('jenis_laporan'); // Tambahkan jenis laporan
 
-        // Buat koneksi ke database
-        $db = \Config\Database::connect();
+        // Instance PenjualanModel
+        $detail = new Mdetail();
 
-        // Query untuk mengambil data penjualan
-        $builder = $db->table('tbl_detail_penjualan');
-        $builder->select('tbl_detail_penjualan.*, SUM(tbl_detail_penjualan.total_harga) AS total_penjualan, SUM((tbl_produk.harga_jual - tbl_produk.harga_beli) * tbl_detail_penjualan.qty) AS total_keuntungan, tbl_produk.nama_produk, tbl_produk.harga_jual, tbl_produk.harga_beli');
-        $builder->join('tbl_penjualan', 'tbl_penjualan.id_penjualan = tbl_detail_penjualan.id_penjualan');
-        $builder->join('tbl_produk', 'tbl_produk.id_produk = tbl_detail_penjualan.id_produk');
+        // Mendapatkan data penjualan
+        $result = $detail->getLaporanPenjualan($bulan, $tahun, $jenis_laporan);
 
-        if ($jenis_laporan == 'bulanan') {
-            // Laporan Bulanan
-            $builder->where('MONTH(tbl_penjualan.tgl_penjualan)', $bulan);
-            $builder->where('YEAR(tbl_penjualan.tgl_penjualan)', $tahun);
-        } else {
-            // Laporan Tahunan
-            $builder->where('YEAR(tbl_penjualan.tgl_penjualan)', $tahun);
-        }
-
-        $query = $builder->get();
-        $result = $query->getRow();
-
-        // Query untuk mendapatkan detail penjualan
-        $detailQuery = $db->table('tbl_detail_penjualan')
-            ->select('tbl_detail_penjualan.*, tbl_produk.nama_produk, tbl_produk.harga_jual, tbl_produk.harga_beli')
-            ->join('tbl_produk', 'tbl_produk.id_produk = tbl_detail_penjualan.id_produk');
-
-        if ($jenis_laporan == 'bulanan') {
-            // Laporan Bulanan
-            $detailQuery->join('tbl_penjualan', 'tbl_penjualan.id_penjualan = tbl_detail_penjualan.id_penjualan')
-                ->where('MONTH(tbl_penjualan.tgl_penjualan)', $bulan)
-                ->where('YEAR(tbl_penjualan.tgl_penjualan)', $tahun);
-        } else {
-            // Laporan Tahunan
-            $detailQuery->join('tbl_penjualan', 'tbl_penjualan.id_penjualan = tbl_detail_penjualan.id_penjualan')
-                ->where('YEAR(tbl_penjualan.tgl_penjualan)', $tahun);
-        }
-
-        $detailResult = $detailQuery->get()->getResultArray();
-
+        // Mendapatkan detail penjualan
+        $detailResult = $detail->getDetailJual($bulan, $tahun, $jenis_laporan);
         $data = [
             'akses' => session()->get('level'),
             'chartData' => $this->detail->getMonthlyIncome(),
