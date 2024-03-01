@@ -121,7 +121,7 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between mb-3">
                                         <h3 class="card-title">TOTAL : RP <?= number_format($totalHarga, 0, ',', '.'); ?></h3>
-                                        <a href="<?= site_url('pembayaran') ?>" id="btnBayar" class="btn btn-primary btn-lg mt-3" disabled>Bayar</a>
+                                        <a href="<?= site_url('pembayaran') ?>" id="btnPembayaran" class="btn btn-primary btn-lg mt-3">Bayar</a>
                                     </div>
 
                                     <div class="row">
@@ -143,22 +143,6 @@
             </div>
         </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // Fungsi untuk memeriksa apakah jumlah yang dibayarkan sudah mencukupi
-                function checkPayment() {
-                    var total = <?= $totalHarga ?>;
-                    var bayar = parseFloat(document.getElementById('txtbayar').value);
-                    if (bayar >= total) {
-                        document.getElementById('btnBayar').removeAttribute('disabled');
-                    } else {
-                        document.getElementById('btnBayar').setAttribute('disabled', 'disabled');
-                    }
-                }
-                // Memanggil fungsi checkPayment() setiap kali input jumlah pembayaran berubah
-                document.getElementById('txtbayar').addEventListener('input', checkPayment);
-            });
-        </script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

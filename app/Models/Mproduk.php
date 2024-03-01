@@ -55,6 +55,7 @@ class Mproduk extends Model
         $produk->join('tbl_satuan', 'tbl_satuan.id_satuan=tbl_produk.id_satuan');
         $produk->join('tbl_kategori', 'tbl_kategori.id_kategori=tbl_produk.id_kategori');
         $produk->where('stok >', 0);
+        $produk->orderBy('stok', 'asc');
         return $produk->findAll();
     }
     // public function getAllProduk(){

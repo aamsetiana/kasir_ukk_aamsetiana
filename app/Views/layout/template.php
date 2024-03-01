@@ -149,7 +149,7 @@
 
       <?php if ($akses == 'Admin') : ?>
         <li class="nav-item">
-          <a class="nav-link collapsed" href="<?= site_url('halaman-admin'); ?>">
+          <a class="nav-link collapsed  " href="<?= site_url('halaman-admin'); ?>">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
@@ -332,7 +332,7 @@
 
                   let pesan = document.createElement('span');
                   pesan.classList.add('pesan-error');
-                  // pesan.textContent = 'Data sudah digunakan';
+                  pesan.textContent = 'Data sudah digunakan';
 
                   pesan.style.display = 'inline-block';
                   pesan.style.color = 'red';
@@ -375,7 +375,7 @@
 
                   let pesan = document.createElement('span');
                   pesan.classList.add('pesan-error');
-                  // pesan.textContent = 'Data sudah digunakan dan tidak bisa dihapus';
+                  pesan.textContent = 'Data sudah digunakan';
 
                   pesan.style.display = 'inline-block';
                   pesan.style.color = 'red';
@@ -454,6 +454,36 @@
       });
     });
   </script>
+
+  <!-- <script>
+    // menu active
+    $(document).ready(function() {
+            let currentUrl = window.location.href;
+
+            $('.nav-link').each(function() {
+
+                let linkUrl = $(this).attr('href');
+
+                if (currentUrl.indexOf(linkUrl) !== -1) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+  </script> -->
+
+
+  <!-- <script>
+    function aturStatusPembayaran() {
+      let totalBayar = parseFloat($('#jumlahPembayaran').val());
+      let totalHargaSemuaBarang = parseFloat($('#totalHargaSemuaBarang').text());
+
+      if (totalBayar >= totalHargaSemuaBarang) {
+        $('#btnPembayaran').prop('disabled', false);
+      } else {
+        $('#btnPembayaran').prop('disabled', true);
+      }
+    }
+  </script> -->
 
   <!-- <script>
     function aturStatusPembayaran() {
