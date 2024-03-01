@@ -60,7 +60,7 @@
                   <td>
                     <a href=<?= site_url('/edit-satuan/' .  $baris['id_satuan']); ?>><i class="btn btn-primary btn-sm bi bi-pencil-square"></i></a>
                     <form action="<?= site_url('/hapus-satuan/' . $baris['id_satuan']); ?>" method="POST" class="d-inline-block">
-                      <button type="submit" class="btn btn-danger btn-sm bi bi bi-trash-fill" id="hapusSatuanProduk" data-id="<?= $baris['id_satuan']; ?>"></button>
+                      <button type="submit" class="btn btn-danger btn-sm bi bi bi-trash-fill" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" id="hapusSatuanProduk" data-id="<?= $baris['id_satuan']; ?>"></button>
                     </form>
 
                   <?php

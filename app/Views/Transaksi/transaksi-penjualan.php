@@ -14,15 +14,15 @@
         <form class="row g-3" action="<?= site_url('simpan-transaksi') ?>" method="POST">
             <div class="col-md-4">
                 <label for="nofaktur" class="form-label fw-bold">No Faktur</label>
-                <label class="form-control" id="input" name="noFaktur" readonly><?= $no_faktur ?></label>
+                <label class="form-control" id="input" name="noFaktur" readonly style="background-color: #f0f0f0; color: #333;"><?= $no_faktur ?></label>
             </div>
             <div class="col-md-3">
                 <label for="inputEmail5" class="form-label fw-bold">Tanggal</label>
-                <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?= date('Y-m-d'); ?>" readonly>
+                <input type="text" class="form-control" id="tanggal" name="tanggal" value="<?= date('Y-m-d'); ?>" readonly style="background-color: #f0f0f0; color: #333;">
             </div>
             <div class="col-md-3">
                 <label for="user" class="form-label fw-bold">Kasir</label>
-                <input type="text" class="form-control" value="<?= session()->get('nama_user'); ?>" readonly>
+                <input type="text" class="form-control" value="<?= session()->get('nama_user'); ?>" readonly style="background-color: #f0f0f0; color: #333;">
                 <!-- <input type="time" class="form-control" id="waktu" name="waktu" readonly>
                 <script>
                     // Mendapatkan elemen input waktu

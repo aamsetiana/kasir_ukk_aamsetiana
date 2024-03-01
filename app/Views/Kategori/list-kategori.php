@@ -65,9 +65,8 @@
                     <td>
                       <a href=<?= site_url('/edit-kategori/' . $baris['id_kategori']); ?>><i class="btn btn-primary btn-sm bi bi-pencil-square"></i></a>
                       <form action="<?= site_url('/hapus-kategori/' . $baris['id_kategori']); ?>" method="POST" class="d-inline-block">
-                        <button type="submit" class="btn btn-danger btn-sm bi bi bi-trash-fill" id="hapusKategoriProduk" data-id="<?= $baris['id_kategori']; ?>"></button>
+                        <button type="submit" class="btn btn-danger btn-sm bi bi bi-trash-fill" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" id="hapusKategoriProduk" data-id="<?= $baris['id_kategori']; ?>"></button>
                       </form>
-                      <!-- <a href=<?= site_url('/hapus-kategori/' . $baris['id_kategori']); ?>><i class="bi bi bi-trash-fill" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')"></i></a> -->
 
                     <?php
                   endforeach;
