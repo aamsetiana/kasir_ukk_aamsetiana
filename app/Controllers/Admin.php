@@ -13,12 +13,16 @@ class Admin extends BaseController
             return redirect()->back();
             exit;
         }
+         
 
         $data  = [
             'akses' => session()->get('level'),
             'total_stok' => $this->produk->getJumlahStok(),
             'jumlah_stok_kosong' => $this->produk->getJumlahStokKosong(),
             'pendapatan_harian' => $this->penjualan->getPendapatanHarian(),
+            'pendapatanHariIni' => $this->detail->pendapatanHarian(),
+            'totalProduk' => $this->produk->getTotalProduk(),
+            // 'pendapatan_harian' => $this->penjualan->getPendapatanHarian1(),
             'chartData' => $this->detail->getMonthlyIncome(),
             // 'dataPendapatan' => $this->penjualan->getPendapatanBulanan(),
             // $dataPendapatan = $pendapatanModel->getPendapatanBulanan($tahun);

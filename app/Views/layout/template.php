@@ -110,7 +110,7 @@
             <li>
               <a class="dropdown-item d-flex align-items-center" href="<?= site_url('logout'); ?>" data-toggle="modal" data-target="#logoutModal">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span>Logout</span>
               </a>
             </li>
 
@@ -199,26 +199,39 @@
         </li><!-- End Profile Page Nav -->
       <?php endif; ?>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-clipboard-data"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <?php if ($akses == 'Admin') : ?>
+      <?php if ($akses == 'Kasir') : ?>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="<?= site_url('laporan-stok'); ?>">
+            <i class="bi bi-clipboard-data"></i>
+            <span>Laporan Stok</span>
+          </a>
+        </li>
+      <?php endif; ?>
+
+      <?php if ($akses == 'Admin') : ?>
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-clipboard-data"></i><span>Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
             <li>
               <a href="<?= site_url('laporan-penjualan'); ?>">
                 <i class="bi bi-circle"></i><span>Laporan Penjualan</span>
               </a>
             </li>
-          <?php endif; ?>
-          <li>
-            <a href="<?= site_url('laporan-stok'); ?>">
-              <i class="bi bi-circle"></i><span>Laporan Stok</span>
-            </a>
-          </li>
 
-        </ul>
-      </li><!-- End Tables Nav -->
+
+
+            <li>
+              <a href="<?= site_url('laporan-stok'); ?>">
+                <i class="bi bi-circle"></i><span>Laporan Stok</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+      <?php endif; ?>
 
       <?php if ($akses == 'Admin') : ?>
         <li class="nav-item">

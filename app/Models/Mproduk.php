@@ -90,6 +90,10 @@ class Mproduk extends Model
         return $this->where('stok', 0)->countAllResults();
     }
 
+    public function getTotalProduk()
+    {
+        return $this->countAllResults();
+    }
     // public function getJumlahBarang()
     // {
     //     return $this->select('SUM(id_kategori) AS total_produk')->get()->getRow()->total_produk;

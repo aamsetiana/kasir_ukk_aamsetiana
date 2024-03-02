@@ -102,6 +102,10 @@ class Mpenjualan extends Model
         return $this->where('DATE(tgl_penjualan)', $today)->select('SUM(total) AS pendapatan_harian')->get()->getRow()->pendapatan_harian;
     }
 
+
+
+
+
     // public function getPenjualanBulanan()
     // {
     //     $builder = $this->db->table('tbl_penjualan');

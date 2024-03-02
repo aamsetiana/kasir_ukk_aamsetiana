@@ -149,4 +149,20 @@ class Mdetail extends Model
         $detailResult = $detailQuery->get()->getResultArray();
         return $detailResult;
     }
+
+    public function pendapatanHarian()
+    {
+        $db = \Config\Database::connect(); // Mengambil instance koneksi database
+
+        $builder = $db->table('tbl_detail_penjualan');
+        $builder->select('SUM((tbl_produk.harga_jual - tbl_produk.harga_beli) * tbl_detail_penjualan.qty) AS total_pendapatan_harian');
+        $builder->join('tbl_penjualan', 'tbl_penjualan.id_penjualan = tbl_detail_penjualan.id_penjualan');
+        $builder->join('tbl_produk', 'tbl_produk.id_produk = tbl_detail_penjualan.id_produk');
+        $builder->where('DATE(tbl_penjualan.tgl_penjualan)', date('Y-m-d')); // Filter hanya penjualan hari ini
+
+        $query = $builder->get();
+        $result = $query->getRowArray(); // Mengambil hasil query sebagai array
+
+        return $result['total_pendapatan_harian'];
+    }
 }
